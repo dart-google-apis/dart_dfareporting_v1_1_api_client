@@ -637,7 +637,8 @@ class FileList {
 class Recipient {
 
   /** The delivery type for the recipient, one of:  
-- "ATTACHMENT"  (support for additional options will be added later) */
+- "ATTACHMENT" 
+- "LINK" */
   String deliveryType;
 
   /** The email address of the recipient. */
@@ -1074,7 +1075,8 @@ class ReportDelivery {
   bool emailOwner;
 
   /** The type of delivery for the owner to receive, if enabled. One of:  
-- "ATTACHMENT"  (support for additional options will be added later) */
+- "ATTACHMENT" 
+- "LINK" */
   String emailOwnerDeliveryType;
 
   /** The message to be sent with each email. */
