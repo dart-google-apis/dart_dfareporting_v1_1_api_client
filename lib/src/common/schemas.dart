@@ -435,16 +435,16 @@ class File {
   core.String format;
 
   /** The unique ID of this report file. */
-  core.String id;
+  core.int id;
 
   /** The kind of resource this is, in this case dfareporting#file. */
   core.String kind;
 
   /** The timestamp in milliseconds since epoch when this file was last modified. */
-  core.String lastModifiedTime;
+  core.int lastModifiedTime;
 
   /** The ID of the report this file was generated from. */
-  core.String reportId;
+  core.int reportId;
 
   /** The status of the report file, one of:  
 - "PROCESSING" 
@@ -686,7 +686,7 @@ class Recipient {
 class Report {
 
   /** The account ID to which this report belongs. */
-  core.String accountId;
+  core.int accountId;
 
   /** The report criteria for a report of type "ACTIVE_GRP". */
   ReportActiveGrpCriteria activeGrpCriteria;
@@ -715,7 +715,7 @@ class Report {
   core.String format;
 
   /** The unique ID identifying this report resource. */
-  core.String id;
+  core.int id;
 
   /** The kind of resource this is, in this case dfareporting#report. */
   core.String kind;
@@ -727,7 +727,7 @@ class Report {
   core.String name;
 
   /** The user profile id of the owner of this report. */
-  core.String ownerProfileId;
+  core.int ownerProfileId;
 
   /** The report criteria for a report of type "PATH_TO_CONVERSION". */
   ReportPathToConversionCriteria pathToConversionCriteria;
@@ -739,7 +739,7 @@ class Report {
   ReportSchedule schedule;
 
   /** The subbaccount ID to which this report belongs if applicable. */
-  core.String subAccountId;
+  core.int subAccountId;
 
   /** The type of the report, one of:  
 - STANDARD 
@@ -1909,7 +1909,7 @@ class SortedDimension {
 class UserProfile {
 
   /** The account ID to which this profile belongs. */
-  core.String accountId;
+  core.int accountId;
 
   /** The account name this profile belongs to. */
   core.String accountName;
@@ -1921,10 +1921,10 @@ class UserProfile {
   core.String kind;
 
   /** The unique ID of the user profile. */
-  core.String profileId;
+  core.int profileId;
 
   /** The sub account ID this profile belongs to if applicable. */
-  core.String subAccountId;
+  core.int subAccountId;
 
   /** The sub account name this profile belongs to if applicable. */
   core.String subAccountName;
