@@ -1,4 +1,4 @@
-part of dfareporting_v1_1_api_client;
+part of dfareporting_v1_1_api;
 
 /** Represents an activity group. */
 class Activities {
@@ -15,19 +15,13 @@ class Activities {
   /** Create new Activities from JSON data */
   Activities.fromJson(core.Map json) {
     if (json.containsKey("filters")) {
-      filters = [];
-      json["filters"].forEach((item) {
-        filters.add(new DimensionValue.fromJson(item));
-      });
+      filters = json["filters"].map((filtersItem) => new DimensionValue.fromJson(filtersItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
     if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
+      metricNames = json["metricNames"].toList();
     }
   }
 
@@ -36,19 +30,13 @@ class Activities {
     var output = new core.Map();
 
     if (filters != null) {
-      output["filters"] = new core.List();
-      filters.forEach((item) {
-        output["filters"].add(item.toJson());
-      });
+      output["filters"] = filters.map((filtersItem) => filtersItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
     }
     if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
+      output["metricNames"] = metricNames.toList();
     }
 
     return output;
@@ -71,10 +59,7 @@ class CustomRichMediaEvents {
   /** Create new CustomRichMediaEvents from JSON data */
   CustomRichMediaEvents.fromJson(core.Map json) {
     if (json.containsKey("filteredEventIds")) {
-      filteredEventIds = [];
-      json["filteredEventIds"].forEach((item) {
-        filteredEventIds.add(new DimensionValue.fromJson(item));
-      });
+      filteredEventIds = json["filteredEventIds"].map((filteredEventIdsItem) => new DimensionValue.fromJson(filteredEventIdsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -86,10 +71,7 @@ class CustomRichMediaEvents {
     var output = new core.Map();
 
     if (filteredEventIds != null) {
-      output["filteredEventIds"] = new core.List();
-      filteredEventIds.forEach((item) {
-        output["filteredEventIds"].add(item.toJson());
-      });
+      output["filteredEventIds"] = filteredEventIds.map((filteredEventIdsItem) => filteredEventIdsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -307,10 +289,7 @@ class DimensionValueList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new DimensionValue.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new DimensionValue.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -328,10 +307,7 @@ class DimensionValueList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -375,10 +351,7 @@ class DimensionValueRequest {
       endDate = json["endDate"];
     }
     if (json.containsKey("filters")) {
-      filters = [];
-      json["filters"].forEach((item) {
-        filters.add(new DimensionFilter.fromJson(item));
-      });
+      filters = json["filters"].map((filtersItem) => new DimensionFilter.fromJson(filtersItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -399,10 +372,7 @@ class DimensionValueRequest {
       output["endDate"] = endDate;
     }
     if (filters != null) {
-      output["filters"] = new core.List();
-      filters.forEach((item) {
-        output["filters"].add(item.toJson());
-      });
+      output["filters"] = filters.map((filtersItem) => filtersItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -471,28 +441,16 @@ class File {
       format = json["format"];
     }
     if (json.containsKey("id")) {
-      if(json["id"] is core.String){
-        id = core.int.parse(json["id"]);
-      }else{
-        id = json["id"];
-      }
+      id = (json["id"] is core.String) ? core.int.parse(json["id"]) : json["id"];
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
     }
     if (json.containsKey("lastModifiedTime")) {
-      if(json["lastModifiedTime"] is core.String){
-        lastModifiedTime = core.int.parse(json["lastModifiedTime"]);
-      }else{
-        lastModifiedTime = json["lastModifiedTime"];
-      }
+      lastModifiedTime = (json["lastModifiedTime"] is core.String) ? core.int.parse(json["lastModifiedTime"]) : json["lastModifiedTime"];
     }
     if (json.containsKey("reportId")) {
-      if(json["reportId"] is core.String){
-        reportId = core.int.parse(json["reportId"]);
-      }else{
-        reportId = json["reportId"];
-      }
+      reportId = (json["reportId"] is core.String) ? core.int.parse(json["reportId"]) : json["reportId"];
     }
     if (json.containsKey("status")) {
       status = json["status"];
@@ -604,10 +562,7 @@ class FileList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new File.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new File.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -625,10 +580,7 @@ class FileList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -765,11 +717,7 @@ class Report {
   /** Create new Report from JSON data */
   Report.fromJson(core.Map json) {
     if (json.containsKey("accountId")) {
-      if(json["accountId"] is core.String){
-        accountId = core.int.parse(json["accountId"]);
-      }else{
-        accountId = json["accountId"];
-      }
+      accountId = (json["accountId"] is core.String) ? core.int.parse(json["accountId"]) : json["accountId"];
     }
     if (json.containsKey("activeGrpCriteria")) {
       activeGrpCriteria = new ReportActiveGrpCriteria.fromJson(json["activeGrpCriteria"]);
@@ -796,11 +744,7 @@ class Report {
       format = json["format"];
     }
     if (json.containsKey("id")) {
-      if(json["id"] is core.String){
-        id = core.int.parse(json["id"]);
-      }else{
-        id = json["id"];
-      }
+      id = (json["id"] is core.String) ? core.int.parse(json["id"]) : json["id"];
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -812,11 +756,7 @@ class Report {
       name = json["name"];
     }
     if (json.containsKey("ownerProfileId")) {
-      if(json["ownerProfileId"] is core.String){
-        ownerProfileId = core.int.parse(json["ownerProfileId"]);
-      }else{
-        ownerProfileId = json["ownerProfileId"];
-      }
+      ownerProfileId = (json["ownerProfileId"] is core.String) ? core.int.parse(json["ownerProfileId"]) : json["ownerProfileId"];
     }
     if (json.containsKey("pathToConversionCriteria")) {
       pathToConversionCriteria = new ReportPathToConversionCriteria.fromJson(json["pathToConversionCriteria"]);
@@ -828,11 +768,7 @@ class Report {
       schedule = new ReportSchedule.fromJson(json["schedule"]);
     }
     if (json.containsKey("subAccountId")) {
-      if(json["subAccountId"] is core.String){
-        subAccountId = core.int.parse(json["subAccountId"]);
-      }else{
-        subAccountId = json["subAccountId"];
-      }
+      subAccountId = (json["subAccountId"] is core.String) ? core.int.parse(json["subAccountId"]) : json["subAccountId"];
     }
     if (json.containsKey("type")) {
       type = json["type"];
@@ -932,22 +868,13 @@ A valid active GRP report needs to have exactly one DimensionValue for the Unite
       dateRange = new DateRange.fromJson(json["dateRange"]);
     }
     if (json.containsKey("dimensionFilters")) {
-      dimensionFilters = [];
-      json["dimensionFilters"].forEach((item) {
-        dimensionFilters.add(new DimensionValue.fromJson(item));
-      });
+      dimensionFilters = json["dimensionFilters"].map((dimensionFiltersItem) => new DimensionValue.fromJson(dimensionFiltersItem)).toList();
     }
     if (json.containsKey("dimensions")) {
-      dimensions = [];
-      json["dimensions"].forEach((item) {
-        dimensions.add(new SortedDimension.fromJson(item));
-      });
+      dimensions = json["dimensions"].map((dimensionsItem) => new SortedDimension.fromJson(dimensionsItem)).toList();
     }
     if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
+      metricNames = json["metricNames"].toList();
     }
   }
 
@@ -959,28 +886,94 @@ A valid active GRP report needs to have exactly one DimensionValue for the Unite
       output["dateRange"] = dateRange.toJson();
     }
     if (dimensionFilters != null) {
-      output["dimensionFilters"] = new core.List();
-      dimensionFilters.forEach((item) {
-        output["dimensionFilters"].add(item.toJson());
-      });
+      output["dimensionFilters"] = dimensionFilters.map((dimensionFiltersItem) => dimensionFiltersItem.toJson()).toList();
     }
     if (dimensions != null) {
-      output["dimensions"] = new core.List();
-      dimensions.forEach((item) {
-        output["dimensions"].add(item.toJson());
-      });
+      output["dimensions"] = dimensions.map((dimensionsItem) => dimensionsItem.toJson()).toList();
     }
     if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
+      output["metricNames"] = metricNames.toList();
     }
 
     return output;
   }
 
   /** Return String representation of ReportActiveGrpCriteria */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The report criteria for a report of type "STANDARD". */
+class ReportCriteria {
+
+  /** Activity group. */
+  Activities activities;
+
+  /** Custom Rich Media Events group. */
+  CustomRichMediaEvents customRichMediaEvents;
+
+  /** The date range for which this report should be run. */
+  DateRange dateRange;
+
+  /** The list of filters on which dimensions are filtered.
+Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed. */
+  core.List<DimensionValue> dimensionFilters;
+
+  /** The list of standard dimensions the report should include. */
+  core.List<SortedDimension> dimensions;
+
+  /** The list of names of metrics the report should include. */
+  core.List<core.String> metricNames;
+
+  /** Create new ReportCriteria from JSON data */
+  ReportCriteria.fromJson(core.Map json) {
+    if (json.containsKey("activities")) {
+      activities = new Activities.fromJson(json["activities"]);
+    }
+    if (json.containsKey("customRichMediaEvents")) {
+      customRichMediaEvents = new CustomRichMediaEvents.fromJson(json["customRichMediaEvents"]);
+    }
+    if (json.containsKey("dateRange")) {
+      dateRange = new DateRange.fromJson(json["dateRange"]);
+    }
+    if (json.containsKey("dimensionFilters")) {
+      dimensionFilters = json["dimensionFilters"].map((dimensionFiltersItem) => new DimensionValue.fromJson(dimensionFiltersItem)).toList();
+    }
+    if (json.containsKey("dimensions")) {
+      dimensions = json["dimensions"].map((dimensionsItem) => new SortedDimension.fromJson(dimensionsItem)).toList();
+    }
+    if (json.containsKey("metricNames")) {
+      metricNames = json["metricNames"].toList();
+    }
+  }
+
+  /** Create JSON Object for ReportCriteria */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (activities != null) {
+      output["activities"] = activities.toJson();
+    }
+    if (customRichMediaEvents != null) {
+      output["customRichMediaEvents"] = customRichMediaEvents.toJson();
+    }
+    if (dateRange != null) {
+      output["dateRange"] = dateRange.toJson();
+    }
+    if (dimensionFilters != null) {
+      output["dimensionFilters"] = dimensionFilters.map((dimensionFiltersItem) => dimensionFiltersItem.toJson()).toList();
+    }
+    if (dimensions != null) {
+      output["dimensions"] = dimensions.map((dimensionsItem) => dimensionsItem.toJson()).toList();
+    }
+    if (metricNames != null) {
+      output["metricNames"] = metricNames.toList();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ReportCriteria */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1016,10 +1009,7 @@ class ReportCrossDimensionReachCriteria {
   /** Create new ReportCrossDimensionReachCriteria from JSON data */
   ReportCrossDimensionReachCriteria.fromJson(core.Map json) {
     if (json.containsKey("breakdown")) {
-      breakdown = [];
-      json["breakdown"].forEach((item) {
-        breakdown.add(new SortedDimension.fromJson(item));
-      });
+      breakdown = json["breakdown"].map((breakdownItem) => new SortedDimension.fromJson(breakdownItem)).toList();
     }
     if (json.containsKey("dateRange")) {
       dateRange = new DateRange.fromJson(json["dateRange"]);
@@ -1028,22 +1018,13 @@ class ReportCrossDimensionReachCriteria {
       dimension = json["dimension"];
     }
     if (json.containsKey("dimensionFilters")) {
-      dimensionFilters = [];
-      json["dimensionFilters"].forEach((item) {
-        dimensionFilters.add(new DimensionValue.fromJson(item));
-      });
+      dimensionFilters = json["dimensionFilters"].map((dimensionFiltersItem) => new DimensionValue.fromJson(dimensionFiltersItem)).toList();
     }
     if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
+      metricNames = json["metricNames"].toList();
     }
     if (json.containsKey("overlapMetricNames")) {
-      overlapMetricNames = [];
-      json["overlapMetricNames"].forEach((item) {
-        overlapMetricNames.add(item);
-      });
+      overlapMetricNames = json["overlapMetricNames"].toList();
     }
     if (json.containsKey("pivoted")) {
       pivoted = json["pivoted"];
@@ -1055,10 +1036,7 @@ class ReportCrossDimensionReachCriteria {
     var output = new core.Map();
 
     if (breakdown != null) {
-      output["breakdown"] = new core.List();
-      breakdown.forEach((item) {
-        output["breakdown"].add(item.toJson());
-      });
+      output["breakdown"] = breakdown.map((breakdownItem) => breakdownItem.toJson()).toList();
     }
     if (dateRange != null) {
       output["dateRange"] = dateRange.toJson();
@@ -1067,22 +1045,13 @@ class ReportCrossDimensionReachCriteria {
       output["dimension"] = dimension;
     }
     if (dimensionFilters != null) {
-      output["dimensionFilters"] = new core.List();
-      dimensionFilters.forEach((item) {
-        output["dimensionFilters"].add(item.toJson());
-      });
+      output["dimensionFilters"] = dimensionFilters.map((dimensionFiltersItem) => dimensionFiltersItem.toJson()).toList();
     }
     if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
+      output["metricNames"] = metricNames.toList();
     }
     if (overlapMetricNames != null) {
-      output["overlapMetricNames"] = new core.List();
-      overlapMetricNames.forEach((item) {
-        output["overlapMetricNames"].add(item);
-      });
+      output["overlapMetricNames"] = overlapMetricNames.toList();
     }
     if (pivoted != null) {
       output["pivoted"] = pivoted;
@@ -1125,10 +1094,7 @@ class ReportDelivery {
       message = json["message"];
     }
     if (json.containsKey("recipients")) {
-      recipients = [];
-      json["recipients"].forEach((item) {
-        recipients.add(new Recipient.fromJson(item));
-      });
+      recipients = json["recipients"].map((recipientsItem) => new Recipient.fromJson(recipientsItem)).toList();
     }
   }
 
@@ -1146,16 +1112,135 @@ class ReportDelivery {
       output["message"] = message;
     }
     if (recipients != null) {
-      output["recipients"] = new core.List();
-      recipients.forEach((item) {
-        output["recipients"].add(item.toJson());
-      });
+      output["recipients"] = recipients.map((recipientsItem) => recipientsItem.toJson()).toList();
     }
 
     return output;
   }
 
   /** Return String representation of ReportDelivery */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The report criteria for a report of type "FLOODLIGHT". */
+class ReportFloodlightCriteria {
+
+  /** The date range this report should be run for. */
+  DateRange dateRange;
+
+  /** The list of filters on which dimensions are filtered.
+Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed. */
+  core.List<DimensionValue> dimensionFilters;
+
+  /** The list of dimensions the report should include. */
+  core.List<SortedDimension> dimensions;
+
+  /** The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'. */
+  DimensionValue floodlightConfigId;
+
+  /** The list of names of metrics the report should include. */
+  core.List<core.String> metricNames;
+
+  /** The properties of the report. */
+  ReportFloodlightCriteriaReportProperties reportProperties;
+
+  /** Create new ReportFloodlightCriteria from JSON data */
+  ReportFloodlightCriteria.fromJson(core.Map json) {
+    if (json.containsKey("dateRange")) {
+      dateRange = new DateRange.fromJson(json["dateRange"]);
+    }
+    if (json.containsKey("dimensionFilters")) {
+      dimensionFilters = json["dimensionFilters"].map((dimensionFiltersItem) => new DimensionValue.fromJson(dimensionFiltersItem)).toList();
+    }
+    if (json.containsKey("dimensions")) {
+      dimensions = json["dimensions"].map((dimensionsItem) => new SortedDimension.fromJson(dimensionsItem)).toList();
+    }
+    if (json.containsKey("floodlightConfigId")) {
+      floodlightConfigId = new DimensionValue.fromJson(json["floodlightConfigId"]);
+    }
+    if (json.containsKey("metricNames")) {
+      metricNames = json["metricNames"].toList();
+    }
+    if (json.containsKey("reportProperties")) {
+      reportProperties = new ReportFloodlightCriteriaReportProperties.fromJson(json["reportProperties"]);
+    }
+  }
+
+  /** Create JSON Object for ReportFloodlightCriteria */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (dateRange != null) {
+      output["dateRange"] = dateRange.toJson();
+    }
+    if (dimensionFilters != null) {
+      output["dimensionFilters"] = dimensionFilters.map((dimensionFiltersItem) => dimensionFiltersItem.toJson()).toList();
+    }
+    if (dimensions != null) {
+      output["dimensions"] = dimensions.map((dimensionsItem) => dimensionsItem.toJson()).toList();
+    }
+    if (floodlightConfigId != null) {
+      output["floodlightConfigId"] = floodlightConfigId.toJson();
+    }
+    if (metricNames != null) {
+      output["metricNames"] = metricNames.toList();
+    }
+    if (reportProperties != null) {
+      output["reportProperties"] = reportProperties.toJson();
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ReportFloodlightCriteria */
+  core.String toString() => JSON.stringify(this.toJson());
+
+}
+
+/** The properties of the report. */
+class ReportFloodlightCriteriaReportProperties {
+
+  /** Include conversions that have no cookie, but do have an exposure path. */
+  core.bool includeAttributedIPConversions;
+
+  /** Include conversions of users with a DoubleClick cookie but without an exposure. That means the user did not click or see an ad from the advertiser within the Floodlight group, or that the interaction happened outside the lookback window. */
+  core.bool includeUnattributedCookieConversions;
+
+  /** Include conversions that have no associated cookies and no exposures. It’s therefore impossible to know how the user was exposed to your ads during the lookback window prior to a conversion. */
+  core.bool includeUnattributedIPConversions;
+
+  /** Create new ReportFloodlightCriteriaReportProperties from JSON data */
+  ReportFloodlightCriteriaReportProperties.fromJson(core.Map json) {
+    if (json.containsKey("includeAttributedIPConversions")) {
+      includeAttributedIPConversions = json["includeAttributedIPConversions"];
+    }
+    if (json.containsKey("includeUnattributedCookieConversions")) {
+      includeUnattributedCookieConversions = json["includeUnattributedCookieConversions"];
+    }
+    if (json.containsKey("includeUnattributedIPConversions")) {
+      includeUnattributedIPConversions = json["includeUnattributedIPConversions"];
+    }
+  }
+
+  /** Create JSON Object for ReportFloodlightCriteriaReportProperties */
+  core.Map toJson() {
+    var output = new core.Map();
+
+    if (includeAttributedIPConversions != null) {
+      output["includeAttributedIPConversions"] = includeAttributedIPConversions;
+    }
+    if (includeUnattributedCookieConversions != null) {
+      output["includeUnattributedCookieConversions"] = includeUnattributedCookieConversions;
+    }
+    if (includeUnattributedIPConversions != null) {
+      output["includeUnattributedIPConversions"] = includeUnattributedIPConversions;
+    }
+
+    return output;
+  }
+
+  /** Return String representation of ReportFloodlightCriteriaReportProperties */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1190,22 +1275,13 @@ class ReportPathToConversionCriteria {
   /** Create new ReportPathToConversionCriteria from JSON data */
   ReportPathToConversionCriteria.fromJson(core.Map json) {
     if (json.containsKey("activityFilters")) {
-      activityFilters = [];
-      json["activityFilters"].forEach((item) {
-        activityFilters.add(new DimensionValue.fromJson(item));
-      });
+      activityFilters = json["activityFilters"].map((activityFiltersItem) => new DimensionValue.fromJson(activityFiltersItem)).toList();
     }
     if (json.containsKey("conversionDimensions")) {
-      conversionDimensions = [];
-      json["conversionDimensions"].forEach((item) {
-        conversionDimensions.add(new SortedDimension.fromJson(item));
-      });
+      conversionDimensions = json["conversionDimensions"].map((conversionDimensionsItem) => new SortedDimension.fromJson(conversionDimensionsItem)).toList();
     }
     if (json.containsKey("customFloodlightVariables")) {
-      customFloodlightVariables = [];
-      json["customFloodlightVariables"].forEach((item) {
-        customFloodlightVariables.add(new SortedDimension.fromJson(item));
-      });
+      customFloodlightVariables = json["customFloodlightVariables"].map((customFloodlightVariablesItem) => new SortedDimension.fromJson(customFloodlightVariablesItem)).toList();
     }
     if (json.containsKey("dateRange")) {
       dateRange = new DateRange.fromJson(json["dateRange"]);
@@ -1214,16 +1290,10 @@ class ReportPathToConversionCriteria {
       floodlightConfigId = new DimensionValue.fromJson(json["floodlightConfigId"]);
     }
     if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
+      metricNames = json["metricNames"].toList();
     }
     if (json.containsKey("perInteractionDimensions")) {
-      perInteractionDimensions = [];
-      json["perInteractionDimensions"].forEach((item) {
-        perInteractionDimensions.add(new SortedDimension.fromJson(item));
-      });
+      perInteractionDimensions = json["perInteractionDimensions"].map((perInteractionDimensionsItem) => new SortedDimension.fromJson(perInteractionDimensionsItem)).toList();
     }
     if (json.containsKey("reportProperties")) {
       reportProperties = new ReportPathToConversionCriteriaReportProperties.fromJson(json["reportProperties"]);
@@ -1235,22 +1305,13 @@ class ReportPathToConversionCriteria {
     var output = new core.Map();
 
     if (activityFilters != null) {
-      output["activityFilters"] = new core.List();
-      activityFilters.forEach((item) {
-        output["activityFilters"].add(item.toJson());
-      });
+      output["activityFilters"] = activityFilters.map((activityFiltersItem) => activityFiltersItem.toJson()).toList();
     }
     if (conversionDimensions != null) {
-      output["conversionDimensions"] = new core.List();
-      conversionDimensions.forEach((item) {
-        output["conversionDimensions"].add(item.toJson());
-      });
+      output["conversionDimensions"] = conversionDimensions.map((conversionDimensionsItem) => conversionDimensionsItem.toJson()).toList();
     }
     if (customFloodlightVariables != null) {
-      output["customFloodlightVariables"] = new core.List();
-      customFloodlightVariables.forEach((item) {
-        output["customFloodlightVariables"].add(item.toJson());
-      });
+      output["customFloodlightVariables"] = customFloodlightVariables.map((customFloodlightVariablesItem) => customFloodlightVariablesItem.toJson()).toList();
     }
     if (dateRange != null) {
       output["dateRange"] = dateRange.toJson();
@@ -1259,16 +1320,10 @@ class ReportPathToConversionCriteria {
       output["floodlightConfigId"] = floodlightConfigId.toJson();
     }
     if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
+      output["metricNames"] = metricNames.toList();
     }
     if (perInteractionDimensions != null) {
-      output["perInteractionDimensions"] = new core.List();
-      perInteractionDimensions.forEach((item) {
-        output["perInteractionDimensions"].add(item.toJson());
-      });
+      output["perInteractionDimensions"] = perInteractionDimensions.map((perInteractionDimensionsItem) => perInteractionDimensionsItem.toJson()).toList();
     }
     if (reportProperties != null) {
       output["reportProperties"] = reportProperties.toJson();
@@ -1297,7 +1352,7 @@ class ReportPathToConversionCriteriaReportProperties {
   /** Include conversions of users with a DoubleClick cookie but without an exposure. That means the user did not click or see an ad from the advertiser within the Floodlight group, or that the interaction happened outside the lookback window. */
   core.bool includeUnattributedCookieConversions;
 
-  /** Include conversions that have no associated cookies and no exposures. Itâs therefore impossible to know how the user was exposed to your ads during the lookback window prior to a conversion. */
+  /** Include conversions that have no associated cookies and no exposures. It’s therefore impossible to know how the user was exposed to your ads during the lookback window prior to a conversion. */
   core.bool includeUnattributedIPConversions;
 
   /** The maximum number of click interactions to include in the report. Advertisers currently paying for E2C reports get up to 200 (100 clicks, 100 impressions). If another advertiser in your network is paying for E2C, you can have up to 5 total exposures per report. */
@@ -1383,8 +1438,8 @@ class ReportPathToConversionCriteriaReportProperties {
 
 }
 
-/** The report criteria for a report of type "STANDARD". */
-class ReportCriteria {
+/** The report criteria for a report of type "REACH". */
+class ReportReachCriteria {
 
   /** Activity group. */
   Activities activities;
@@ -1392,21 +1447,24 @@ class ReportCriteria {
   /** Custom Rich Media Events group. */
   CustomRichMediaEvents customRichMediaEvents;
 
-  /** The date range for which this report should be run. */
+  /** The date range this report should be run for. */
   DateRange dateRange;
 
   /** The list of filters on which dimensions are filtered.
 Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed. */
   core.List<DimensionValue> dimensionFilters;
 
-  /** The list of standard dimensions the report should include. */
+  /** The list of dimensions the report should include. */
   core.List<SortedDimension> dimensions;
 
   /** The list of names of metrics the report should include. */
   core.List<core.String> metricNames;
 
-  /** Create new ReportCriteria from JSON data */
-  ReportCriteria.fromJson(core.Map json) {
+  /** The list of names of  Reach By Frequency metrics the report should include. */
+  core.List<core.String> reachByFrequencyMetricNames;
+
+  /** Create new ReportReachCriteria from JSON data */
+  ReportReachCriteria.fromJson(core.Map json) {
     if (json.containsKey("activities")) {
       activities = new Activities.fromJson(json["activities"]);
     }
@@ -1417,26 +1475,20 @@ Filters for different dimensions are ANDed, filters for the same dimension are g
       dateRange = new DateRange.fromJson(json["dateRange"]);
     }
     if (json.containsKey("dimensionFilters")) {
-      dimensionFilters = [];
-      json["dimensionFilters"].forEach((item) {
-        dimensionFilters.add(new DimensionValue.fromJson(item));
-      });
+      dimensionFilters = json["dimensionFilters"].map((dimensionFiltersItem) => new DimensionValue.fromJson(dimensionFiltersItem)).toList();
     }
     if (json.containsKey("dimensions")) {
-      dimensions = [];
-      json["dimensions"].forEach((item) {
-        dimensions.add(new SortedDimension.fromJson(item));
-      });
+      dimensions = json["dimensions"].map((dimensionsItem) => new SortedDimension.fromJson(dimensionsItem)).toList();
     }
     if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
+      metricNames = json["metricNames"].toList();
+    }
+    if (json.containsKey("reachByFrequencyMetricNames")) {
+      reachByFrequencyMetricNames = json["reachByFrequencyMetricNames"].toList();
     }
   }
 
-  /** Create JSON Object for ReportCriteria */
+  /** Create JSON Object for ReportReachCriteria */
   core.Map toJson() {
     var output = new core.Map();
 
@@ -1450,168 +1502,22 @@ Filters for different dimensions are ANDed, filters for the same dimension are g
       output["dateRange"] = dateRange.toJson();
     }
     if (dimensionFilters != null) {
-      output["dimensionFilters"] = new core.List();
-      dimensionFilters.forEach((item) {
-        output["dimensionFilters"].add(item.toJson());
-      });
+      output["dimensionFilters"] = dimensionFilters.map((dimensionFiltersItem) => dimensionFiltersItem.toJson()).toList();
     }
     if (dimensions != null) {
-      output["dimensions"] = new core.List();
-      dimensions.forEach((item) {
-        output["dimensions"].add(item.toJson());
-      });
+      output["dimensions"] = dimensions.map((dimensionsItem) => dimensionsItem.toJson()).toList();
     }
     if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
+      output["metricNames"] = metricNames.toList();
+    }
+    if (reachByFrequencyMetricNames != null) {
+      output["reachByFrequencyMetricNames"] = reachByFrequencyMetricNames.toList();
     }
 
     return output;
   }
 
-  /** Return String representation of ReportCriteria */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The report criteria for a report of type "FLOODLIGHT". */
-class ReportFloodlightCriteria {
-
-  /** The date range this report should be run for. */
-  DateRange dateRange;
-
-  /** The list of filters on which dimensions are filtered.
-Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed. */
-  core.List<DimensionValue> dimensionFilters;
-
-  /** The list of dimensions the report should include. */
-  core.List<SortedDimension> dimensions;
-
-  /** The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'. */
-  DimensionValue floodlightConfigId;
-
-  /** The list of names of metrics the report should include. */
-  core.List<core.String> metricNames;
-
-  /** The properties of the report. */
-  ReportFloodlightCriteriaReportProperties reportProperties;
-
-  /** Create new ReportFloodlightCriteria from JSON data */
-  ReportFloodlightCriteria.fromJson(core.Map json) {
-    if (json.containsKey("dateRange")) {
-      dateRange = new DateRange.fromJson(json["dateRange"]);
-    }
-    if (json.containsKey("dimensionFilters")) {
-      dimensionFilters = [];
-      json["dimensionFilters"].forEach((item) {
-        dimensionFilters.add(new DimensionValue.fromJson(item));
-      });
-    }
-    if (json.containsKey("dimensions")) {
-      dimensions = [];
-      json["dimensions"].forEach((item) {
-        dimensions.add(new SortedDimension.fromJson(item));
-      });
-    }
-    if (json.containsKey("floodlightConfigId")) {
-      floodlightConfigId = new DimensionValue.fromJson(json["floodlightConfigId"]);
-    }
-    if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
-    }
-    if (json.containsKey("reportProperties")) {
-      reportProperties = new ReportFloodlightCriteriaReportProperties.fromJson(json["reportProperties"]);
-    }
-  }
-
-  /** Create JSON Object for ReportFloodlightCriteria */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (dateRange != null) {
-      output["dateRange"] = dateRange.toJson();
-    }
-    if (dimensionFilters != null) {
-      output["dimensionFilters"] = new core.List();
-      dimensionFilters.forEach((item) {
-        output["dimensionFilters"].add(item.toJson());
-      });
-    }
-    if (dimensions != null) {
-      output["dimensions"] = new core.List();
-      dimensions.forEach((item) {
-        output["dimensions"].add(item.toJson());
-      });
-    }
-    if (floodlightConfigId != null) {
-      output["floodlightConfigId"] = floodlightConfigId.toJson();
-    }
-    if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
-    }
-    if (reportProperties != null) {
-      output["reportProperties"] = reportProperties.toJson();
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ReportFloodlightCriteria */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The properties of the report. */
-class ReportFloodlightCriteriaReportProperties {
-
-  /** Include conversions that have no cookie, but do have an exposure path. */
-  core.bool includeAttributedIPConversions;
-
-  /** Include conversions of users with a DoubleClick cookie but without an exposure. That means the user did not click or see an ad from the advertiser within the Floodlight group, or that the interaction happened outside the lookback window. */
-  core.bool includeUnattributedCookieConversions;
-
-  /** Include conversions that have no associated cookies and no exposures. Itâs therefore impossible to know how the user was exposed to your ads during the lookback window prior to a conversion. */
-  core.bool includeUnattributedIPConversions;
-
-  /** Create new ReportFloodlightCriteriaReportProperties from JSON data */
-  ReportFloodlightCriteriaReportProperties.fromJson(core.Map json) {
-    if (json.containsKey("includeAttributedIPConversions")) {
-      includeAttributedIPConversions = json["includeAttributedIPConversions"];
-    }
-    if (json.containsKey("includeUnattributedCookieConversions")) {
-      includeUnattributedCookieConversions = json["includeUnattributedCookieConversions"];
-    }
-    if (json.containsKey("includeUnattributedIPConversions")) {
-      includeUnattributedIPConversions = json["includeUnattributedIPConversions"];
-    }
-  }
-
-  /** Create JSON Object for ReportFloodlightCriteriaReportProperties */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (includeAttributedIPConversions != null) {
-      output["includeAttributedIPConversions"] = includeAttributedIPConversions;
-    }
-    if (includeUnattributedCookieConversions != null) {
-      output["includeUnattributedCookieConversions"] = includeUnattributedCookieConversions;
-    }
-    if (includeUnattributedIPConversions != null) {
-      output["includeUnattributedIPConversions"] = includeUnattributedIPConversions;
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ReportFloodlightCriteriaReportProperties */
+  /** Return String representation of ReportReachCriteria */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1664,10 +1570,7 @@ Example: If 'startDate' is Monday, April 2nd 2012 (2012-04-02), "DAY_OF_MONTH" w
       repeats = json["repeats"];
     }
     if (json.containsKey("repeatsOnWeekDays")) {
-      repeatsOnWeekDays = [];
-      json["repeatsOnWeekDays"].forEach((item) {
-        repeatsOnWeekDays.add(item);
-      });
+      repeatsOnWeekDays = json["repeatsOnWeekDays"].toList();
     }
     if (json.containsKey("runsOnDayOfMonth")) {
       runsOnDayOfMonth = json["runsOnDayOfMonth"];
@@ -1694,10 +1597,7 @@ Example: If 'startDate' is Monday, April 2nd 2012 (2012-04-02), "DAY_OF_MONTH" w
       output["repeats"] = repeats;
     }
     if (repeatsOnWeekDays != null) {
-      output["repeatsOnWeekDays"] = new core.List();
-      repeatsOnWeekDays.forEach((item) {
-        output["repeatsOnWeekDays"].add(item);
-      });
+      output["repeatsOnWeekDays"] = repeatsOnWeekDays.toList();
     }
     if (runsOnDayOfMonth != null) {
       output["runsOnDayOfMonth"] = runsOnDayOfMonth;
@@ -1710,114 +1610,6 @@ Example: If 'startDate' is Monday, April 2nd 2012 (2012-04-02), "DAY_OF_MONTH" w
   }
 
   /** Return String representation of ReportSchedule */
-  core.String toString() => JSON.stringify(this.toJson());
-
-}
-
-/** The report criteria for a report of type "REACH". */
-class ReportReachCriteria {
-
-  /** Activity group. */
-  Activities activities;
-
-  /** Custom Rich Media Events group. */
-  CustomRichMediaEvents customRichMediaEvents;
-
-  /** The date range this report should be run for. */
-  DateRange dateRange;
-
-  /** The list of filters on which dimensions are filtered.
-Filters for different dimensions are ANDed, filters for the same dimension are grouped together and ORed. */
-  core.List<DimensionValue> dimensionFilters;
-
-  /** The list of dimensions the report should include. */
-  core.List<SortedDimension> dimensions;
-
-  /** The list of names of metrics the report should include. */
-  core.List<core.String> metricNames;
-
-  /** The list of names of  Reach By Frequency metrics the report should include. */
-  core.List<core.String> reachByFrequencyMetricNames;
-
-  /** Create new ReportReachCriteria from JSON data */
-  ReportReachCriteria.fromJson(core.Map json) {
-    if (json.containsKey("activities")) {
-      activities = new Activities.fromJson(json["activities"]);
-    }
-    if (json.containsKey("customRichMediaEvents")) {
-      customRichMediaEvents = new CustomRichMediaEvents.fromJson(json["customRichMediaEvents"]);
-    }
-    if (json.containsKey("dateRange")) {
-      dateRange = new DateRange.fromJson(json["dateRange"]);
-    }
-    if (json.containsKey("dimensionFilters")) {
-      dimensionFilters = [];
-      json["dimensionFilters"].forEach((item) {
-        dimensionFilters.add(new DimensionValue.fromJson(item));
-      });
-    }
-    if (json.containsKey("dimensions")) {
-      dimensions = [];
-      json["dimensions"].forEach((item) {
-        dimensions.add(new SortedDimension.fromJson(item));
-      });
-    }
-    if (json.containsKey("metricNames")) {
-      metricNames = [];
-      json["metricNames"].forEach((item) {
-        metricNames.add(item);
-      });
-    }
-    if (json.containsKey("reachByFrequencyMetricNames")) {
-      reachByFrequencyMetricNames = [];
-      json["reachByFrequencyMetricNames"].forEach((item) {
-        reachByFrequencyMetricNames.add(item);
-      });
-    }
-  }
-
-  /** Create JSON Object for ReportReachCriteria */
-  core.Map toJson() {
-    var output = new core.Map();
-
-    if (activities != null) {
-      output["activities"] = activities.toJson();
-    }
-    if (customRichMediaEvents != null) {
-      output["customRichMediaEvents"] = customRichMediaEvents.toJson();
-    }
-    if (dateRange != null) {
-      output["dateRange"] = dateRange.toJson();
-    }
-    if (dimensionFilters != null) {
-      output["dimensionFilters"] = new core.List();
-      dimensionFilters.forEach((item) {
-        output["dimensionFilters"].add(item.toJson());
-      });
-    }
-    if (dimensions != null) {
-      output["dimensions"] = new core.List();
-      dimensions.forEach((item) {
-        output["dimensions"].add(item.toJson());
-      });
-    }
-    if (metricNames != null) {
-      output["metricNames"] = new core.List();
-      metricNames.forEach((item) {
-        output["metricNames"].add(item);
-      });
-    }
-    if (reachByFrequencyMetricNames != null) {
-      output["reachByFrequencyMetricNames"] = new core.List();
-      reachByFrequencyMetricNames.forEach((item) {
-        output["reachByFrequencyMetricNames"].add(item);
-      });
-    }
-
-    return output;
-  }
-
-  /** Return String representation of ReportReachCriteria */
   core.String toString() => JSON.stringify(this.toJson());
 
 }
@@ -1843,10 +1635,7 @@ class ReportList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new Report.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new Report.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -1864,10 +1653,7 @@ class ReportList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -1963,11 +1749,7 @@ class UserProfile {
   /** Create new UserProfile from JSON data */
   UserProfile.fromJson(core.Map json) {
     if (json.containsKey("accountId")) {
-      if(json["accountId"] is core.String){
-        accountId = core.int.parse(json["accountId"]);
-      }else{
-        accountId = json["accountId"];
-      }
+      accountId = (json["accountId"] is core.String) ? core.int.parse(json["accountId"]) : json["accountId"];
     }
     if (json.containsKey("accountName")) {
       accountName = json["accountName"];
@@ -1979,18 +1761,10 @@ class UserProfile {
       kind = json["kind"];
     }
     if (json.containsKey("profileId")) {
-      if(json["profileId"] is core.String){
-        profileId = core.int.parse(json["profileId"]);
-      }else{
-        profileId = json["profileId"];
-      }
+      profileId = (json["profileId"] is core.String) ? core.int.parse(json["profileId"]) : json["profileId"];
     }
     if (json.containsKey("subAccountId")) {
-      if(json["subAccountId"] is core.String){
-        subAccountId = core.int.parse(json["subAccountId"]);
-      }else{
-        subAccountId = json["subAccountId"];
-      }
+      subAccountId = (json["subAccountId"] is core.String) ? core.int.parse(json["subAccountId"]) : json["subAccountId"];
     }
     if (json.containsKey("subAccountName")) {
       subAccountName = json["subAccountName"];
@@ -2055,10 +1829,7 @@ class UserProfileList {
       etag = json["etag"];
     }
     if (json.containsKey("items")) {
-      items = [];
-      json["items"].forEach((item) {
-        items.add(new UserProfile.fromJson(item));
-      });
+      items = json["items"].map((itemsItem) => new UserProfile.fromJson(itemsItem)).toList();
     }
     if (json.containsKey("kind")) {
       kind = json["kind"];
@@ -2073,10 +1844,7 @@ class UserProfileList {
       output["etag"] = etag;
     }
     if (items != null) {
-      output["items"] = new core.List();
-      items.forEach((item) {
-        output["items"].add(item.toJson());
-      });
+      output["items"] = items.map((itemsItem) => itemsItem.toJson()).toList();
     }
     if (kind != null) {
       output["kind"] = kind;
@@ -2090,3 +1858,16 @@ class UserProfileList {
 
 }
 
+core.Map _mapMap(core.Map source, [core.Object convert(core.Object source) = null]) {
+  assert(source != null);
+  var result = new dart_collection.LinkedHashMap();
+  source.forEach((core.String key, value) {
+    assert(key != null);
+    if(convert == null) {
+      result[key] = value;
+    } else {
+      result[key] = convert(value);
+    }
+  });
+  return result;
+}
